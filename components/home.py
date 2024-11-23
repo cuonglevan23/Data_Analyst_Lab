@@ -6,6 +6,23 @@ def show():
     st.title('Trang Chủ')
     st.write('Chào mừng bạn đến với trang chủ của dự án.')
 
+    # Upload and load CSV file
+    uploaded_file = st.file_uploader("Chọn một file CSV", type=["csv"])
+    if uploaded_file is not None:
+        # Load data from the uploaded CSV file
+        df = pd.read_csv(uploaded_file)
+
+        # Display data overview
+        st.write("### Tổng quan về dữ liệu")
+        st.write("Đây là bản xem trước của dữ liệu:")
+        st.dataframe(df.head())
+
+        # Display descriptive statistics of the dataset
+        st.write("### Mô tả dữ liệu")
+        st.write(df.describe())
+    else:
+        st.write("Vui lòng chọn một file CSV để tải dữ liệu.")
+
     # Tải dữ liệu từ file CSV
     df = pd.read_csv("dataset/Car Sales.xlsx - car_data.csv")
 
